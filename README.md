@@ -61,6 +61,8 @@ To resolve specified domain name to specified IP using keyword-matching algorith
 
 然后运行 then run `node index.js`。mac上需要 on mac you have to run `sudo node index.js`。
 
+![running](image/running.jpg)
+
 ## 实现原理 implement
 
 DNS protocol: https://tools.ietf.org/html/rfc1035
