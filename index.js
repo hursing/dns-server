@@ -42,7 +42,7 @@ function resolve(msg, rinfo) {
   response.writeUInt16BE(4, offset)  // Length of IP
   offset += 2
   targetIp.split('.').forEach(value => {
-    response.writeUInt8(value, offset)
+    response.writeUInt8(parseInt(value), offset)
     offset += 1
   })
   // console.log(response.toString('hex'))
