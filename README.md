@@ -67,6 +67,5 @@ DNS protocol: https://tools.ietf.org/html/rfc1035
 
 ## 可以做更多 You can do more
 
-- 把关键字做成正则匹配 use regular expression to match keyword
 - 加入配置文件，可匹配多个关键字 use configuration file for matching multiple keywords
 - 增加命令行参数，不用在源码修改关键字 add command line args support to avoid modifying keyword in source code

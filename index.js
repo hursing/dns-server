@@ -1,5 +1,5 @@
-// The keyword in domain name.
-const domain = 'hursing'
+// The regular expression keyword in domain name.
+const domain = /hursing/
 // When keyword matched, resolve to this IP.
 const targetIp = '127.0.0.1'
 // When keyword not matched, use the fallback dns server to resolve.
@@ -41,7 +41,7 @@ function resolve(msg, rinfo) {
   offset += 4
   response.writeUInt16BE(4, offset)  // Length of IP
   offset += 2
-  targetIp.split('.').map(value => {
+  targetIp.split('.').forEach(value => {
     response.writeUInt8(value, offset)
     offset += 1
   })
@@ -94,10 +94,10 @@ server.on('message', (msg, rinfo) => {
   // console.log(msg.toString('hex'))
   const host = parseHost(msg.slice(12))
   console.log(`receive query: ${host}`)
-  if (host.indexOf(domain) === -1) {
-    forward(msg, rinfo)
-  } else {
+  if (domain.test(host)) {
     resolve(msg, rinfo)
+  } else {
+    forward(msg, rinfo)
   }
 })
 
