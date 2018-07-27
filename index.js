@@ -74,11 +74,26 @@ function forward(msg, rinfo) {
   })
 }
 
+function parseHost(msg) {
+  let num = msg.readUInt8(0)
+  let offset = 1
+  let host = ""
+  while (num !== 0) {
+    host += msg.slice(offset, offset + num).toString()
+    offset += num
+    num = msg.readUInt8(offset)
+    offset += 1
+    if (num !== 0) {
+      host += '.'
+    }
+  }
+  return host
+}
+
 server.on('message', (msg, rinfo) => {
-  console.log(`receive from ${rinfo.address}:${rinfo.port}`)
   // console.log(msg.toString('hex'))
-  const host = msg.slice(12).toString()
-  console.log(`host=${host}`)
+  const host = parseHost(msg.slice(12))
+  console.log(`receive query: ${host}`)
   if (host.indexOf(domain) === -1) {
     forward(msg, rinfo)
   } else {
