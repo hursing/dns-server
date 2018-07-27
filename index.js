@@ -16,6 +16,7 @@ function copyBuffer(src, offset, dst) {
 }
 
 function resolve(msg, rinfo) {
+  const queryInfo = msg.slice(12)
   const response = Buffer.alloc(28 + queryInfo.length)
   let offset = 0
   const id = msg.slice(0, 2)
@@ -29,7 +30,6 @@ function resolve(msg, rinfo) {
   offset += 2
   response.writeUInt32BE(0, offset)  // Authority RRs & Additional RRs
   offset += 4
-  const queryInfo = msg.slice(12)
   copyBuffer(queryInfo, offset, response)
   offset += queryInfo.length
   response.writeUInt16BE(0xC00C, offset)  // offset to domain name

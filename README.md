@@ -1,7 +1,9 @@
 # dns-server
-A DNS server app written by pure Nodejs for develop and test use. Only support IPv4.
+A DNS server app written by pure Nodejs for develop and test use. Only support IPv4 now.
 
 纯Nodejs写的本地DNS服务器，供开发测试使用。前端做网站时，一般本地调试时的url是IP地址。但有些功能需要有域名才能工作，那么用这个工具来做本地解析就好了。
+
+效果
 
 https://tools.ietf.org/html/rfc1035
 
@@ -30,3 +32,10 @@ https://tools.ietf.org/html/rfc1035
 
 
 然后用node运行`index.js`。mac上需要`sudo node index.js`。
+
+
+## 可以做更多You can do more
+
+- 把关键字做成正则匹配 use expression to match keyword
+- 加入配置文件，可匹配多个关键字 use configuration file to match multiple keywords
+- 增加命令行参数，不用在源码修改关键字 add command line args support to avoid modify the keyword in source code
